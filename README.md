@@ -19,7 +19,6 @@ La clase `miAfd` define un AFD con las siguientes características:
 
 ### Ejemplo de Uso
 
-python
 afd = miAfd()
 valido, msg = afd.procesar("aab")
 print(f"La cadena es {msg}")
