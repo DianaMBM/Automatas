@@ -1,0 +1,35 @@
+
+#afd
+
+class miAfd():
+    def __init__(self):
+        self.alfabeto = { "A", "B", "C", "D", "E", "F"}
+        self.estados = {"s0", "s1", "s2"}
+        self.estadoInicial = "s0"
+        self.estadosFinales = {"s2"}
+        self.transiciones = {
+            "s0": { "A": "s2", "B": "s0", "C": "s0", "D": "s0", "E": "s0", "F": "s0"},
+            "s1": {"A": "s1", "B": "s2", "C": "s1", "D": "s1", "E": "s1", "F": "s1"},
+            "s2": {"A": "s1", "B": "s2", "C": "s1", "D": "s1", "E": "s1", "F": "s1"}
+        }
+
+        self.actual = self.estadoInicial
+
+    def reinicio(self):
+        self.actual = self.estadoInicial
+
+    def procesar(self, cadena):
+        self.reinicio()
+        for palabra in cadena:
+            palabra = palabra.upper()
+
+            self.actual = self.transiciones[self.actual][palabra]
+
+        if self.actual in self.estadosFinales:
+            return True, "Palabra Valida"
+        else:
+            return False, "Palabra Invalida"
+
+afd = miAfd()
+valido, msg = afd.procesar("aab")
+print(f"{palabraAprobar} es {msg}")
